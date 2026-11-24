@@ -17,10 +17,14 @@ def main() -> None:
     if not SENTENCE.strip():
         print("ERROR: entry is blank", file=sys.stderr)
         sys.exit(1)
+    if "\n" in SENTENCE:
+        print("ERROR: entry must be a single line (no newlines)", file=sys.stderr)
+        sys.exit(1)
     if len(SENTENCE) > MAX_CHARS:
         print(
             f"ERROR: entry is {len(SENTENCE)} characters, "
-            f"over the {MAX_CHARS}-character limit",
+            f"{len(SENTENCE) - MAX_CHARS} over the {MAX_CHARS}-character limit; "
+            "shorten it to fit",
             file=sys.stderr,
         )
         sys.exit(1)
